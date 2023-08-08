@@ -34,14 +34,34 @@ router.get(
     "/get/playlist/:playlistId",
     passport.authenticate("jwt", {session: false}),
     async (req, res) => {
-        // This concept is called req.params
+       
         const playlistId = req.params.playlistId;
-        // I need to find a playlist with the _id = playlistId
+
+        
         const playlist = await Playlist.findOne({_id: playlistId});
         if (!playlist) {
             return res.status(301).json({err: "Invalid ID"});
         }
         return res.status(200).json(playlist);
+    }
+);
+
+// Get all playlists made by an artist
+// /get/artist/xyz
+router.get(
+    "/get/artist/:artistId",
+    passport.authenticate("jwt", {session: false}),
+    async (req, res) => {
+        const artistId = req.params.artistId;
+
+        // We can do this: Check if artist with given artist Id exists
+        const artist = await User.findOne({_id: artistId});
+        if (!artist) {
+            return res.status(304).json({err: "Invalid Artist ID"});
+        }
+
+        const playlists = await Playlist.find({owner: artistId});
+        return res.status(200).json({data: playlists});
     }
 );
 
