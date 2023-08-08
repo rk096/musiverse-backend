@@ -7,6 +7,7 @@ const User = require("./models/User");
 const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/auth");
 const songRoutes = require("./routes/song");
+const playlistRoutes = require("./routes/playlist");
 
 require("dotenv").config();
 const port = 8000;
@@ -61,6 +62,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/song", songRoutes);
+app.use("/playlist", playlistRoutes);
 
 
 app.listen(port, () => {
