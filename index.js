@@ -4,12 +4,15 @@ const JwtStrategy = require("passport-jwt").Strategy,
     ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
 const User = require("./models/User");
+const bcrypt = require("bcrypt");
+const authRoutes = require("./routes/auth");
 
 require("dotenv").config();
 const port = 8000;
 const app = express();
 
 
+app.use(express.json());
 
 
 // console.log(process.env);
@@ -56,6 +59,8 @@ app.get("/", (req, res) => {
 
 });
 
+
+app.use("/auth", authRoutes);
 
 
 app.listen(port, () => {
