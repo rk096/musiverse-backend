@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const JwtStrategy = require("passport-jwt").Strategy,
     ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
-const User = require("./models/User"); 
+const User = require("./models/User");
 const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/auth");
+const songRoutes = require("./routes/song");
 
 require("dotenv").config();
 const port = 8000;
@@ -17,7 +18,7 @@ app.use(express.json());
 
 // console.log(process.env);
 
-mongoose.connect("mongodb+srv://sarthikalathiya:" + process.env.MONGO_PASS +"@cluster0.whmxsq2.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://sarthikalathiya:" + process.env.MONGO_PASS + "@cluster0.whmxsq2.mongodb.net/?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -51,6 +52,7 @@ passport.use(
     })
 );
 
+
 app.get("/", (req, res) => {
     res.send("hello world");
 
@@ -58,6 +60,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/auth", authRoutes);
+app.use("/song", songRoutes);
 
 
 app.listen(port, () => {
