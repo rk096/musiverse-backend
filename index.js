@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const JwtStrategy = require("passport-jwt").Strategy,
     ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
-const User = require("./models/User");
+const User = require("./models/User"); 
 const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/auth");
 
@@ -17,9 +17,7 @@ app.use(express.json());
 
 // console.log(process.env);
 
-mongoose.connect("mongodb+srv://richakamani:"+ 
-process.env.MONGO_PASS
-+"@cluster0.iyjifo2.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://sarthikalathiya:" + process.env.MONGO_PASS +"@cluster0.whmxsq2.mongodb.net/?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -38,19 +36,18 @@ let opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = "thisKeyIsSupposedToBeSecret";
 passport.use(
-    new JwtStrategy(opts, function (jwt_payload, done) {
-        User.findOne({ _id: jwt_payload.identifier }, function (err, user) {
-            // done(error, doesTheUserExist)
-            if (err) {
-                return done(err, false);
-            }
+    new JwtStrategy(opts, async function (jwt_payload, done) {
+        try {
+            const user = await User.findOne({ _id: jwt_payload.identifier });
             if (user) {
                 return done(null, user);
             } else {
                 return done(null, false);
                 // or you could create a new account
             }
-        });
+        } catch (err) {
+            return done(err, false);
+        }
     })
 );
 
