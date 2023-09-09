@@ -8,18 +8,18 @@ const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/auth");
 const songRoutes = require("./routes/song");
 const playlistRoutes = require("./routes/playlist");
-
+const cors = require("cors")
 require("dotenv").config();
+
 const port = 8000;
 const app = express();
-
-
+app.use(cors());
 app.use(express.json());
 
 
 // console.log(process.env);
 
-mongoose.connect("mongodb+srv://sarthikalathiya:" + process.env.MONGO_PASS + "@cluster0.whmxsq2.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://richakamani:"+process.env.MONGO_PASS+"@cluster0.iyjifo2.mongodb.net/?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
