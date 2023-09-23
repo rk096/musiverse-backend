@@ -8,18 +8,20 @@ const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/auth");
 const songRoutes = require("./routes/song");
 const playlistRoutes = require("./routes/playlist");
+const imageRoutes = require("./routes/imageUpload");
 const cors = require("cors")
 require("dotenv").config();
+
 
 const port = 8000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+    
 
 // console.log(process.env);
 
-mongoose.connect("mongodb+srv://richakamani:"+process.env.MONGO_PASS+"@cluster0.iyjifo2.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect(process.env.MONGO_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -63,6 +65,10 @@ app.get("/", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/song", songRoutes);
 app.use("/playlist", playlistRoutes);
+app.use("/upload", imageRoutes);
+
+// Serve uploaded images
+app.use('/uploads', express.static('uploads'));
 
 
 app.listen(port, () => {
