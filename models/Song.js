@@ -1,4 +1,6 @@
+const { time } = require("console");
 const mongoose = require("mongoose");
+const { stringify } = require("querystring");
 
 const Song = new mongoose.Schema({
     name: {
@@ -12,6 +14,10 @@ const Song = new mongoose.Schema({
     track: {
         type: String,
         required: true,
+    },
+    duration:{
+type : String,
+required : true,
     },
     artist: {
         type: mongoose.Types.ObjectId,

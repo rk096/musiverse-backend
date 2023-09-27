@@ -67,6 +67,7 @@ router.post("/login", async (req, res) => {
     const userToReturn = {...user.toJSON(), token};
     delete userToReturn.password;
     return res.status(200).json(userToReturn);
+
 });
 
 

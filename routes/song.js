@@ -11,14 +11,14 @@ router.post(
     "/create",
     passport.authenticate("jwt", { session: false }),
     async (req, res) => {
-        const { name, thumbnail, track } = req.body;
-        if (!name || !thumbnail || !track) {
+        const { name, thumbnail, track, duration } = req.body;
+        if (!name || !thumbnail || !track || !duration) {
             return res
                 .status(301)
                 .json({ err: "Insufficient details to create song." });
         }
         const artist = req.user._id;
-        const songDetails = { name, thumbnail, track, artist };
+        const songDetails = { name, thumbnail, track, artist ,duration};
         const createdSong = await Song.create(songDetails);
         return res.status(200).json(createdSong);
     }
