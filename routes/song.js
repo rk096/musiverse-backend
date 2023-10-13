@@ -44,7 +44,9 @@ router.get(
         if (!artist) {
             return res.status(301).json({ err: "song does not exist" });
         }
-        const songs = await Song.find({ artist: "6514369bff4cda05b3f75538" });
+        const songs = await Song.find({ artist: "6514369bff4cda05b3f75538" }).populate(
+            "artist"
+        );
         return res.status(200).json({ data: songs });
     }
 );

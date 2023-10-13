@@ -22,18 +22,7 @@ const User = new mongoose.Schema({
         type: String,
         required: true,
     },
-    likedSongs: {
-        type: String,
-        default: "",
-    },
-    likedPlaylists: {
-        type: String,
-        default: "",
-    },
-    subscribedArtists: {
-        type: String,
-        default: "",
-    },
+   
 });
 
 const UserModel = mongoose.model("User", User);

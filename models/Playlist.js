@@ -19,12 +19,6 @@ const Playlist = new mongoose.Schema({
             ref: "Song",
         },
     ],
-    collaborators: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: "User",
-        },
-    ],
 });
 
 const PlaylistModel = mongoose.model("Playlist", Playlist);
