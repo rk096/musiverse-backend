@@ -32,8 +32,8 @@ To get started with the Musiverse Backend, follow these steps:
 Configure Database: Configure your database settings in the appropriate configuration files. This typically involves setting up a .env file with your MongoDB connection information.
 
 Start Server with Nodemon: Start the server using nodemon for automatic server restarts during development.
-    ```sh
-   nodemon server.js
+    sh
+nodemon server.js
 
 ## Contributing
 
