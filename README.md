@@ -22,11 +22,17 @@ The Image Module is responsible for managing image files within the application.
 
 To get started with the Musiverse Backend, follow these steps:
 
-1. Clone this repository to your local machine.
-2. Install the necessary dependencies by running `npm install` or `yarn install`.
-3. Configure your database settings in the appropriate configuration files.
-4. Run the migrations and seeders to set up the database schema and populate initial data.
-5. Start the server by running `npm start` or `yarn start`.
+1. **Clone Repository**: Clone this repository to your local machine.
+
+2. **Install Dependencies**: Navigate into the cloned repository directory and install the necessary dependencies, including nodemon and MongoDB.
+   ```sh
+   cd musiverse-backend
+   npm install nodemon mongodb
+   
+Configure Database: Configure your database settings in the appropriate configuration files. This typically involves setting up a .env file with your MongoDB connection information.
+
+Start Server with Nodemon: Start the server using nodemon for automatic server restarts during development.
+nodemon server.js
 
 ## Contributing
 
